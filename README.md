@@ -49,4 +49,35 @@ python manage.py makemigrations 和 python manage.py migrate 命令
 python manage.py sqlmigrate blog 0001
 ```
 # Django处理http请求 #
-app目录新建urls.py文件
+### 绑定URL ###
+app目录新建urls.py文件并写入
+```python
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.index, name='index'),
+]
+```
+r'^$' 的模式正是匹配一个空字符串（这个正则表达式的意思是以空字符串开头且以空字符串结尾），于是二者匹配，Django 便会调用其对应的 views.index 函数。
+### 编写视图函数 ###
+```python
+myblog/views.py
+
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("欢迎访问我的博客首页！")
+```
+### 配置项目URL ###
+```python
+blogproject/urls.py
+from django.conf.urls import url, include
+from django.contrib import admin
+
+urlpatterns = [
+   url(r'^admin/', admin.site.urls),
+   url(r'', include('blog.urls')),
+]
+```
