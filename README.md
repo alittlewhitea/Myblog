@@ -15,6 +15,7 @@ python manage.py startapp appname<br>
 使用postgresql
 pip install psycopg2<br>
 修改settings.py文件中database中的<br>
+```Python
 DATABASES = {
     'default' {
         'ENGINE''django.db.backends.postgresql_psycopg2',
@@ -26,17 +27,26 @@ DATABASES = {
 <br>
 python manage.py shell<br>
  from  django.db import connection<br>
- cursor = connection.cursor
+ cursor = connection.cursor //Python
+```
 
 # 数据库设计
  文章有文章的ID、标题、正文、分类和标签等一系列属性
 首先model中定义了三张表，分别是文章（Post）、分类（Category）以及标签（Tag）<br>
-作者是从 django.contrib.auth.models 导入的<br>
+作者是从 
+```python
+django.contrib.auth.models
+``` 导入的<br>
 ### 理解ForeignKey 和 ManyToManyField。 ###
 ForeignKey 表明一种一对多的关联关系,比如这里我们的文章和分类的关系，一篇文章只能对应一个分类，而一个分类下可以有多篇文章<br>
 ManyToManyField 表明一种多对多的关联关系，比如这里的文章和标签，一篇文章可以有多个标签，而一个标签下也可以有多篇文章
 ### 迁移数据库 ###
+```python
 python manage.py makemigrations 和 python manage.py migrate 命令
+```
 ### 查看log ###
+```python
 python manage.py sqlmigrate blog 0001
+```
 # Django处理http请求 #
+app目录新建urls.py文件
