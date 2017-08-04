@@ -22,9 +22,8 @@ DATABASES = {
         'PASSWORD' '...',
        'HOST' '127.0.0.1',
     }
-<br>
-测试
-<br>
+```
+```python
 python manage.py shell<br>
  from  django.db import connection<br>
  cursor = connection.cursor //Python
@@ -36,7 +35,8 @@ python manage.py shell<br>
 作者是从 
 ```python
 django.contrib.auth.models
-``` 导入的<br>
+``` 
+导入的<br>
 ### 理解ForeignKey 和 ManyToManyField。 ###
 ForeignKey 表明一种一对多的关联关系,比如这里我们的文章和分类的关系，一篇文章只能对应一个分类，而一个分类下可以有多篇文章<br>
 ManyToManyField 表明一种多对多的关联关系，比如这里的文章和标签，一篇文章可以有多个标签，而一个标签下也可以有多篇文章
