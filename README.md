@@ -81,3 +81,28 @@ urlpatterns = [
    url(r'', include('myblog.urls')),
 ]
 ```
+### 使用模板 ###
+project下新建templates文件夹，templates文件夹下新建myblog文件夹，myblog下新建index.html,写入模板代码<br>
+在setting.py下找到TEMPLATES<br>
+```python
+'DIRS': [],
+```
+变更为
+```python
+'DIRS': [os.path.join(BASE_DIR, 'templates')],
+```
+# 修改首页视图函数 #
+修改myblog/views.py视图为
+```python
+from django.shortcuts import render
+from .models import Post
+
+def index(request):
+    post_list = Post.objects.all().order_by('-created_time')
+    return render(request, 'blog/index.html', context={'post_list': post_list})
+```
+新建文件夹myblog/static/myblog/css和js，下载博客模板,替换其中的templates/index.html<br>
+```
+<link rel="stylesheet" href="css/bootstrap.min.css">替换为
+<link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+```
