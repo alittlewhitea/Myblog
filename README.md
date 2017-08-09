@@ -106,3 +106,20 @@ def index(request):
 <link rel="stylesheet" href="css/bootstrap.min.css">替换为
 <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
 ```
+# 后台Admin相关 #
+```python
+python manage.py createsuperuser
+```创建超级用户，输入用户名邮箱密码，登陆网站127.0.0.1:8000/admin<br>
+### 后台注册admin ###
+```python
+from django.contrib import admin
+from .models import Post, Category, Tag
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_time', 'modified_time', 'category', 'author']
+
+# 把新增的 PostAdmin 也注册进来
+admin.site.register(Post, PostAdmin)
+admin.site.register(Category)
+admin.site.register(Tag)
+```
