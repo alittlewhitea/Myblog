@@ -109,7 +109,9 @@ def index(request):
 # 后台Admin相关 #
 ```python
 python manage.py createsuperuser
-```创建超级用户，输入用户名邮箱密码，登陆网站127.0.0.1:8000/admin<br>
+```
+<br>
+创建超级用户，输入用户名邮箱密码，登陆网站127.0.0.1:8000/admin<br>
 ### 后台注册admin ###
 ```python
 from django.contrib import admin
